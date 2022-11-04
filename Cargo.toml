@@ -1,9 +1,9 @@
 [package]
 name = "css-typing-gen"
 description = "CSS Typing animation generator"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
-
+repository = "https://github.com/ayes-web/css-typing-gen"
 
 [lib]
 crate-type = ["cdylib"]
@@ -13,7 +13,6 @@ default = ["wee_alloc"]
 
 [profile.release]
 lto = true
-opt-level = "z"
 
 [dependencies]
 wasm-bindgen = { version = "0.2.83" }
@@ -34,5 +33,5 @@ features = [
   'HtmlInputElement',
   'HtmlButtonElement',
   'HtmlStyleElement',
-  'HtmlDivElement'
+  'HtmlDivElement',
 ]
