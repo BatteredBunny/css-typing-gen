@@ -7,9 +7,4 @@ export default defineConfig({
         topLevelAwait(),
         wasm(),
     ],
-    build: {
-        rollupOptions: {
-            // external: ['prismjs']
-        }
-    },
 });

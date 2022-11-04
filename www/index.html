@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <title>CSS Typing animation generator</title>
 
-  <!-- Icons x3 -->
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="icon" href="./assets/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="./assets/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -21,19 +20,28 @@
   <!-- Animation will be put here -->
   <style id="typing-animation-style"></style>
 
-  <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+  <script type="module" src="./index.js"></script>
 </head>
 
 <body>
-  <h1 class="text-center">Generate CSS typing animation</h1>
-  <h2 class="text-center">Click start recording to being.</h2>
+  <noscript>
+    <p class="text-center">This page contains webassembly and javascript content, please enable javascript in your
+      browser.</p>
+  </noscript>
 
   <div class="container">
+    <div id="repo-link">
+      <a href="https://github.com/ayes-web/css-typing-gen">Source</a>
+    </div>
+
+    <h1 class="text-center">Generate CSS typing animation</h1>
+    <h2 class="text-center">Click start recording to being.</h2>
+
     <div id="input-row">
       <button id="generate-button">Start recording</button>
       <input id="main-input" placeholder="Start typing!" autofocus hidden />
     </div>
-  
+
     <div id="finished-state" hidden>
       <div id="animation-wrapper">
         <div id="typing-animation-box"></div>
@@ -42,8 +50,6 @@
       <pre><code class="language-css" id="generated-css"></code></pre>
     </div>
   </div>
-
-  <script type="module" src="./index.js" defer></script>
 </body>
 
 </html>

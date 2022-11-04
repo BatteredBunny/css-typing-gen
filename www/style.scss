@@ -16,6 +16,20 @@ body {
   margin-right: 3vw;
 }
 
+a {
+  color: orange;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+#repo-link {
+  text-align: left;
+  margin-top: 2vh;
+}
+
 #input-row {
   margin-top: 2vh;
   margin-bottom: 2vh;
