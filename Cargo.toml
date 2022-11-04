@@ -1,0 +1,38 @@
+[package]
+name = "css-typing-gen"
+description = "CSS Typing animation generator"
+version = "0.1.0"
+edition = "2021"
+
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["wee_alloc"]
+
+[profile.release]
+lto = true
+opt-level = "z"
+
+[dependencies]
+wasm-bindgen = { version = "0.2.83" }
+wasm-bindgen-futures = "0.4.33"
+gloo = "0.8.0"
+wee_alloc = { version = "0.4.5", optional = true }
+chrono = "0.4.22"
+console_error_panic_hook = "0.1.7"
+js-sys = "0.3.60"
+
+[dependencies.web-sys]
+version = "0.3.60"
+features = [
+  'Document',
+  'Element',
+  'Event',
+  'EventTarget',
+  'HtmlInputElement',
+  'HtmlButtonElement',
+  'HtmlStyleElement',
+  'HtmlDivElement'
+]

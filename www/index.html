@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS Typing animation generator</title>
+
+  <!-- Icons x3 -->
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./assets/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="./assets/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="./site.webmanifest" />
+
+  <link rel="stylesheet" href="./style.scss">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-dark.min.css">
+
+  <!-- Animation will be put here -->
+  <style id="typing-animation-style"></style>
+
+  <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+</head>
+
+<body>
+  <h1 class="text-center">Generate CSS typing animation</h1>
+  <h2 class="text-center">Click start recording to being.</h2>
+
+  <div class="container">
+    <div id="input-row">
+      <button id="generate-button">Start recording</button>
+      <input id="main-input" placeholder="Start typing!" autofocus hidden />
+    </div>
+  
+    <div id="finished-state" hidden>
+      <div id="animation-wrapper">
+        <div id="typing-animation-box"></div>
+      </div>
+
+      <pre><code class="language-css" id="generated-css"></code></pre>
+    </div>
+  </div>
+
+  <script type="module" src="./index.js" defer></script>
+</body>
+
+</html>

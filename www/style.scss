@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html,
+body {
+  background-color: #0f0f0f;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+#input-row {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+
+  #generate-button {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    padding: 5px;
+    padding-inline: 10px;
+
+    &:hover {
+      background-color: rgb(56, 56, 56);
+      cursor: pointer;
+    }
+  }
+
+  #main-input {
+    background-color: #161616;
+    color: white;
+    padding: 5px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #a3a3a3;
+    }
+  }
+}
+
+#finished-state {
+  #animation-wrapper {
+    min-height: 4vh;
+    margin-left: 2vw;
+
+    #typing-animation-box {
+      display: inline-block;
+      height: auto;
+      font-size: large;
+
+      animation-duration: 3s;
+      animation-name: blinking-cursor;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  pre.language-css {
+    background-color: #161616 !important;
+    border: 1px solid #333333 !important;
+  }
+}
+
+@keyframes blinking-cursor {
+  0% {
+    border-right: 1px solid white;
+  }
+
+  49.9% {
+    border-right: 1px solid white;
+  }
+  50% {
+    border-right: 1px solid transparent;
+  }
+
+  100% {
+    border-right: 1px solid transparent;
+  }
+}
