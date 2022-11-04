@@ -1,7 +1,8 @@
 {
-    "name": "CSS",
+    "name": "CSS Typing animation generator",
     "start_url": "https://css-gen.sly.ee",
-    "short_name": "CSS Typing animation generator",
+    "short_name": "CSS Typing Gen",
+    "description": "CSS Typing animation generator",
     "icons": [
         {
             "src": "/assets/android-chrome-192x192.png",
