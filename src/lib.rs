@@ -34,7 +34,7 @@ extern "C" {
 }
 
 #[wasm_bindgen(start)]
-pub async fn run() {
+pub fn run() {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
 
     let document = gloo::utils::document();
