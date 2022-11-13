@@ -13,6 +13,7 @@
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
+    "common-web-styles": "github:ayes-web/common-web-styles",
     "sass": "^1.56.0",
     "vite": "^3.2.2",
     "vite-plugin-pwa": "^0.13.2",

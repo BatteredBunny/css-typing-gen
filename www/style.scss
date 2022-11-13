@@ -1,29 +1,6 @@
+@import "./node_modules/common-web-styles/common";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-html,
-body {
-  background-color: #0f0f0f;
-  color: white;
-  font-family: "Roboto", sans-serif;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.container {
-  margin-left: 3vw;
-  margin-right: 3vw;
-}
-
-a {
-  color: orange;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
+@import "https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-dark.min.css";
 
 #repo-link {
   text-align: left;
@@ -33,33 +10,6 @@ a {
 #input-row {
   margin-top: 2vh;
   margin-bottom: 2vh;
-
-  #generate-button {
-    background-color: rgb(31, 31, 31);
-    color: white;
-    border: 1px solid #333333;
-    border-radius: 5px;
-    padding: 5px;
-    padding-inline: 10px;
-
-    &:hover {
-      background-color: rgb(56, 56, 56);
-      cursor: pointer;
-    }
-  }
-
-  #main-input {
-    background-color: #161616;
-    color: white;
-    padding: 5px;
-    border: 1px solid #333333;
-    border-radius: 5px;
-
-    &:focus {
-      outline: none;
-      border: 1px solid #a3a3a3;
-    }
-  }
 }
 
 #finished-state {

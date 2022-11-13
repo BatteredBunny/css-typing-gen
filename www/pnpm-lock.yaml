@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  common-web-styles: github:ayes-web/common-web-styles
   css-typing-gen: link:../pkg
   prismjs: ^1.29.0
   sass: ^1.56.0
@@ -14,6 +15,7 @@ dependencies:
   prismjs: 1.29.0
 
 devDependencies:
+  common-web-styles: github.com/ayes-web/common-web-styles/f4abfd9ef350f458187b1ee89d7ef425c1011416
   sass: 1.56.0
   vite: 3.2.2_sass@1.56.0
   vite-plugin-pwa: 0.13.2_vite@3.2.2
@@ -3104,4 +3106,10 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+    dev: true
+
+  github.com/ayes-web/common-web-styles/f4abfd9ef350f458187b1ee89d7ef425c1011416:
+    resolution: {tarball: https://codeload.github.com/ayes-web/common-web-styles/tar.gz/f4abfd9ef350f458187b1ee89d7ef425c1011416}
+    name: common-web-styles
+    version: 1.0.0
     dev: true
