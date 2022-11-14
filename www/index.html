@@ -35,11 +35,36 @@
     <h1 class="text-center">Generate CSS typing animation</h1>
     <h2 class="text-center">Click start recording to being.</h2>
 
-    <div id="input-row">
-      <button id="generate-button">Start recording</button>
-      <label>
-        <input id="main-input" placeholder="Start typing!" autocomplete="off" autofocus hidden />
-      </label>
+    <div id="menu">
+      <div id="settings-row">
+        <div id="settings">
+          <h2>Settings</h2>
+          <div class="margin-bottom">Seconds to delay animation ending by</div>
+          <label>
+            <input id="end-delay-seconds" type="number" value="0" min="0" autocomplete="off">
+          </label>
+        </div>
+
+        <div id="advanced-settings">
+          <h2>Advanced settings</h2>
+          <div>
+            <label for="fix-interpolation">Fix interpolation</label>
+            <input id="fix-interpolation" type="checkbox" checked>
+          </div>
+
+          <div>
+            <label for="wait-at-start">Wait at start</label>
+            <input id="wait-at-start" type="checkbox" checked>
+          </div>
+        </div>
+      </div>
+
+      <div id="input-row">
+        <button id="generate-button">Start recording</button>
+        <label>
+          <input id="main-input" placeholder="Start typing!" autocomplete="off" autofocus hidden />
+        </label>
+      </div>
     </div>
 
     <div id="finished-state" hidden>

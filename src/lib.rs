@@ -1,22 +1,13 @@
 use std::panic;
-use std::{cell::RefCell, rc::Rc};
-
-use chrono::{DateTime, Utc};
 use gloo::events::EventListener;
 use wasm_bindgen::{prelude::*, JsCast};
+use wasm_bindgen::JsValue;
+use std::rc::Rc;
 
-struct Action {
-    date: DateTime<Utc>,
-    value: String,
-}
+mod state;
 
-struct ApplicationState {
-    recording_started: RefCell<bool>,
-    recording_actions: RefCell<Vec<Action>>,
-    recording_start_time: RefCell<Option<DateTime<Utc>>>,
-}
-
-const FIX_INTERPOLATION: bool = true;
+use crate::state::ApplicationState;
+use crate::state::Action;
 
 #[wasm_bindgen]
 extern "C" {
@@ -39,12 +30,11 @@ pub fn run() {
 
     let document = gloo::utils::document();
 
-    let state: Rc<ApplicationState> = Rc::new(ApplicationState {
-        recording_started: RefCell::new(false),
-        recording_actions: RefCell::new(Vec::new()),
-        recording_start_time: RefCell::new(None),
-    });
+    let state: Rc<ApplicationState> = Rc::new(ApplicationState::new());
     let state2 = Rc::clone(&state);
+    let state3 = Rc::clone(&state);
+    let state4 = Rc::clone(&state);
+    let state5 = Rc::clone(&state);
 
     let generate_button = document
         .get_element_by_id("generate-button")
@@ -74,6 +64,81 @@ pub fn run() {
         .dyn_into::<web_sys::HtmlDivElement>()
         .unwrap();
 
+    let fix_interpolation_checkbox = document
+        .get_element_by_id("fix-interpolation")
+        .unwrap()
+        .dyn_into::<web_sys::HtmlInputElement>()
+        .unwrap();
+
+    let wait_at_start_checkbox = document
+        .get_element_by_id("wait-at-start")
+        .unwrap()
+        .dyn_into::<web_sys::HtmlInputElement>()
+        .unwrap();
+
+    let end_delay_seconds_input = Rc::new(document
+        .get_element_by_id("end-delay-seconds")
+        .unwrap()
+        .dyn_into::<web_sys::HtmlInputElement>()
+        .unwrap());
+    let end_delay_seconds_input2 = Rc::clone(&end_delay_seconds_input);
+
+    EventListener::new(&end_delay_seconds_input, "input", move |_| {
+        let mut new_length = end_delay_seconds_input2.value_as_number();
+        
+        if new_length.is_nan() { // If invalid sets previous value
+            end_delay_seconds_input2.set_value_as_number(*state5.end_delay_seconds.borrow());
+            return
+        } else if new_length.is_sign_negative() { // changes negative to positive
+            new_length = new_length.abs();
+            end_delay_seconds_input2.set_value_as_number(new_length);
+        } else {
+            *state5.end_delay_seconds.borrow_mut() = new_length;
+        }
+
+        if state5.recording_start_time.borrow().is_some() {
+            let generated_css = match state5.generate_css() {
+                Some(c) => c,
+                None => return,
+            };
+
+            state5.set_css(generated_css);
+        }
+    })
+    .forget();
+
+    EventListener::new(&wait_at_start_checkbox, "change", move |_| {
+        let mut toggle = state4.start_wait.borrow_mut();
+        *toggle = !*toggle;
+        drop(toggle);
+
+        if state4.recording_start_time.borrow().is_some() {
+            let generated_css = match state4.generate_css() {
+                Some(c) => c,
+                None => return,
+            };
+
+            state4.set_css(generated_css);
+        }
+    })
+    .forget();
+
+    EventListener::new(&fix_interpolation_checkbox, "change", move |_| {
+        let mut toggle = state3.fix_interpolation.borrow_mut();
+        *toggle = !*toggle;
+        drop(toggle);
+
+        if state3.recording_start_time.borrow().is_some() {
+            let generated_css = match state3.generate_css() {
+                Some(c) => c,
+                None => return,
+            };
+
+            state3.set_css(generated_css);
+        }
+    })
+    .forget();
+
     // Generate button click listener
     EventListener::new(&generate_button, "click", move |_| {
         let mut recording_started = state.recording_started.borrow_mut();
@@ -81,87 +146,19 @@ pub fn run() {
         if *recording_started {
             generate_button2.set_inner_html("Start recording");
 
-            let start_date = (*state.recording_start_time.borrow()).unwrap();
-
-            let actions = state.recording_actions.borrow();
-            let last_action = match actions.last() {
-                Some(v) => v,
+            let generated_css = match state.generate_css() {
+                Some(c) => c,
                 None => {
                     main_input.set_hidden(true);
                     finished_state.set_hidden(true);
-                    *recording_started = !*recording_started;
+                    *recording_started = false;
                     return;
                 }
             };
 
-            // Finds animation duration
-            let diff = (start_date - last_action.date).num_milliseconds() as f64;
-            let animation_duration_seconds = (diff / 1000.0).abs();
-
-            let keyframes = actions
-                .iter()
-                .enumerate()
-                .map(|(i, action)| {
-                    // Calculates percentage relative to the animation duration
-                    let temp_diff = (start_date - action.date).num_milliseconds() as f64;
-                    let action_time = (temp_diff / 1000.0).abs();
-                    let current_percent = (action_time / animation_duration_seconds) * 100.0;
-
-                    if FIX_INTERPOLATION {
-                        let last_value = if i == 0 { "" } else { &actions[i - 1].value };
-                        let last_percent = current_percent - 0.1;
-
-                        format!(
-                            "
-                {last_percent}% {{
-                    content: \"{last_value}\";
-                }}
-                {current_percent}% {{
-                    content: \"{}\";
-                }}",
-                            action.value
-                        )
-                    } else {
-                        format!(
-                            "
-                {current_percent}% {{
-                    content: \"{}\";
-                }}",
-                            action.value
-                        )
-                    }
-                })
-                .collect::<Vec<String>>()
-                .join("");
-
-            // If i just generate static name animation wont start from beginning when applying to <style>
-            let animation_timestamp = start_date.timestamp();
-
-            let generated_css = &format!(
-                "
-            #typing-animation-box::after {{
-                animation-name: typing-animation-{animation_timestamp};
-                animation-duration: {animation_duration_seconds}s;
-                animation-iteration-count: infinite;
-                content: \"\";
-            }}
-
-            @keyframes typing-animation-{animation_timestamp} {{
-                0% {{
-                    content: \"\";
-                }}{keyframes}
-            }}
-            "
-            );
-
             main_input.set_hidden(true);
             finished_state.set_hidden(false);
-            typing_animation_style.set_inner_html(generated_css);
-            generated_css_element.set_inner_html(&Prism::highlight(
-                &normalize(generated_css, JsValue::null()),
-                &CSS.clone(),
-                None,
-            ));
+            state.set_css(generated_css);
         } else {
             typing_animation_style.set_inner_html("");
             generated_css_element.set_inner_html("");
