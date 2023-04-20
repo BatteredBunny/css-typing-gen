@@ -1,7 +1,7 @@
 [package]
 name = "css-typing-gen"
 description = "CSS Typing animation generator"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 repository = "https://github.com/ayes-web/css-typing-gen"
 
@@ -12,14 +12,14 @@ crate-type = ["cdylib"]
 lto = true
 
 [dependencies]
-wasm-bindgen = { version = "0.2.83" }
+wasm-bindgen = { version = "0.2.84" }
 gloo = "0.8.0"
 chrono = "0.4.22"
 console_error_panic_hook = "0.1.7"
-js-sys = "0.3.60"
+js-sys = "0.3.61"
 
 [dependencies.web-sys]
-version = "0.3.60"
+version = "0.3.61"
 features = [
   'Document',
   'Element',
