@@ -1,5 +1,5 @@
-@import "./node_modules/common-web-styles/common";
-@import "./node_modules/prismjs/themes/prism-dark.min.css";
+@import "common-web-styles/common";
+@import "prismjs/themes/prism-dark.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 #repo-link {
@@ -23,7 +23,7 @@
 
   position: sticky;
   top: 10px;
-  background-color: $background-color;
+  background-color: var(--background-color);
   display: inline-block;
 
   padding-left: 2vw;
@@ -31,7 +31,7 @@
   padding-right: 2vw;
   margin-bottom: 2vh;
 
-  border: 1px solid $interactive-border-color;
+  border: 1px solid var(--interactive-border-color);
   border-radius: 10px;
 }
 

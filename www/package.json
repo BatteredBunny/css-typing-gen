@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "css-typing-gen": "link:../pkg",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
