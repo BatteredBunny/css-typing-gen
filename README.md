@@ -1,5 +1,7 @@
-<h1 align="center">css-typing-gen</h1>
-<p align="center">Generate CSS typing animations</p>
+
+<h1 align="center">Website for generating CSS typing animations</h1>
+
+https://github.com/ayes-web/css-typing-gen/assets/52951851/0b76b304-264a-4caa-a83a-f54b87a1bd6c
 
 # Dev instructions
 
