@@ -1,12 +1,14 @@
-
-use wasm_bindgen::JsValue;
-use wasm_bindgen::JsCast;
-use web_sys::{Element, HtmlStyleElement};
-use chrono::{DateTime, Utc, Duration};
-use std::{cell::RefCell};
-use crate::CSS;
 use crate::normalize;
 use crate::Prism;
+use crate::WrappedGetElementById;
+use crate::CSS;
+use chrono::{DateTime, Duration, Utc};
+use std::cell::RefCell;
+use wasm_bindgen::JsValue;
+use web_sys::HtmlButtonElement;
+use web_sys::HtmlDivElement;
+use web_sys::HtmlInputElement;
+use web_sys::{Element, HtmlStyleElement};
 
 #[derive(Clone)]
 pub struct Action {
@@ -23,14 +25,38 @@ pub struct ApplicationState {
     pub start_wait: RefCell<bool>,
     pub end_delay_seconds: RefCell<f64>,
 
-    typing_animation_style: HtmlStyleElement,
-    generated_css_element: Element,
+    pub elements: ApplicationElements,
 }
 
-impl ApplicationState {
-    pub fn new() -> Self {
+pub struct ApplicationElements {
+    pub typing_animation_style: HtmlStyleElement,
+    pub generated_css_element: Element,
+    pub finished_state: HtmlDivElement,
+    pub fix_interpolation_checkbox: HtmlInputElement,
+    pub wait_at_start_checkbox: HtmlInputElement,
+    pub generate_button: HtmlButtonElement,
+    pub input: HtmlInputElement,
+    pub end_delay_seconds_input: HtmlInputElement,
+}
+
+impl ApplicationElements {
+    fn new() -> ApplicationElements {
         let document = gloo::utils::document();
 
+        ApplicationElements {
+            typing_animation_style: document.wr_get_element_by_id("typing-animation-style"),
+            generated_css_element: document.wr_get_element_by_id("generated-css"),
+            finished_state: document.wr_get_element_by_id("finished-state"),
+            fix_interpolation_checkbox: document.wr_get_element_by_id("fix-interpolation"),
+            wait_at_start_checkbox: document.wr_get_element_by_id("wait-at-start"),
+            generate_button: document.wr_get_element_by_id("generate-button"),
+            input: document.wr_get_element_by_id("main-input"),
+            end_delay_seconds_input: document.wr_get_element_by_id("end-delay-seconds"),
+        }
+    }
+}
+impl ApplicationState {
+    pub fn new() -> Self {
         ApplicationState {
             recording_started: RefCell::new(false),
             recording_actions: RefCell::new(Vec::new()),
@@ -39,35 +65,32 @@ impl ApplicationState {
             fix_interpolation: RefCell::new(true),
             start_wait: RefCell::new(true),
             end_delay_seconds: RefCell::new(0.0),
-
-            typing_animation_style: document
-                .get_element_by_id("typing-animation-style")
-                .unwrap()
-                .dyn_into::<web_sys::HtmlStyleElement>()
-                .unwrap(),
-            generated_css_element: document.get_element_by_id("generated-css").unwrap(),
+            elements: ApplicationElements::new(),
         }
     }
 
     pub fn set_css(&self, generated_css: String) {
-        self.typing_animation_style.set_inner_html(&generated_css);
-        self.generated_css_element.set_inner_html(&Prism::highlight(
-            &normalize(&generated_css, JsValue::null()),
-            &CSS.clone(),
-            None,
-        ));
+        self.elements
+            .typing_animation_style
+            .set_inner_html(&generated_css);
+        self.elements
+            .generated_css_element
+            .set_inner_html(&Prism::highlight(
+                &normalize(&generated_css, JsValue::null()),
+                &CSS.clone(),
+                None,
+            ));
     }
 
     pub fn generate_css(&self) -> Option<String> {
         let mut actions = self.recording_actions.borrow().clone();
         if *self.end_delay_seconds.borrow() > 0.0 {
-            
             let action = actions.last()?;
             let new_date = action.date + Duration::seconds(*self.end_delay_seconds.borrow() as i64);
 
             actions.push(Action {
                 date: new_date,
-                value: action.value.clone()
+                value: action.value.clone(),
             });
         }
 
@@ -86,14 +109,17 @@ impl ApplicationState {
         let keyframes = actions
             .iter()
             .enumerate()
-            .map(|(i, action)| {
+            .fold(String::new(), |acc, (i, action)| {
                 // Calculates percentage relative to the animation duration
                 let temp_diff = (start_date - action.date).num_milliseconds() as f64;
                 let action_time = (temp_diff / 1000.0).abs();
                 let current_percent = (action_time / animation_duration_seconds) * 100.0;
 
-                if *self.fix_interpolation.borrow() {
-                    let last_value = if i == 0 { "" } else { &actions[i - 1].value };
+                acc + &if *self.fix_interpolation.borrow() {
+                    let last_value = match actions.get(i - 1) {
+                        Some(s) => &s.value,
+                        None => "",
+                    };
 
                     let mut last_percent: f64 = current_percent - 0.1;
                     if last_percent < 0.0 {
@@ -119,9 +145,7 @@ impl ApplicationState {
                         action.value
                     )
                 }
-            })
-            .collect::<Vec<String>>()
-            .join("");
+            });
 
         // If i just generate static name animation wont start from beginning when applying to <style>
         let animation_timestamp = chrono::Utc::now().timestamp_millis();
@@ -134,7 +158,7 @@ impl ApplicationState {
                     animation-iteration-count: infinite;
                     content: \"\";
                 }}
-    
+
                 @keyframes typing-animation-{animation_timestamp} {{
                     0% {{
                         content: \"\";
