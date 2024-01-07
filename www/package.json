@@ -1,6 +1,6 @@
 {
   "name": "css-typing-gen-npm",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "css-typing-gen-npm package",
   "main": "index.html",
   "type": "module",
@@ -13,11 +13,11 @@
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "common-web-styles": "github:ayes-web/common-web-styles",
-    "sass": "^1.69.5",
-    "vite": "^5.0.4",
-    "vite-plugin-pwa": "^0.17.2",
-    "vite-plugin-top-level-await": "^1.3.1",
-    "vite-plugin-wasm": "^3.2.2"
+    "common-web-styles": "github:BatteredBunny/common-web-styles",
+    "sass": "^1.69.7",
+    "vite": "^5.0.11",
+    "vite-plugin-pwa": "^0.17.4",
+    "vite-plugin-top-level-await": "^1.4.1",
+    "vite-plugin-wasm": "^3.3.0"
   }
 }
