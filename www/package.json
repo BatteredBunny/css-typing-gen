@@ -1,6 +1,6 @@
 {
   "name": "css-typing-gen-npm",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "css-typing-gen-npm package",
   "main": "index.html",
   "type": "module",
@@ -14,10 +14,10 @@
   },
   "devDependencies": {
     "common-web-styles": "github:BatteredBunny/common-web-styles",
-    "sass": "^1.69.7",
-    "vite": "^5.0.11",
-    "vite-plugin-pwa": "^0.17.4",
-    "vite-plugin-top-level-await": "^1.4.1",
+    "sass": "^1.79.4",
+    "vite": "^5.4.8",
+    "vite-plugin-pwa": "^0.20.5",
+    "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0"
   }
 }
