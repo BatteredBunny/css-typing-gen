@@ -15,7 +15,7 @@ extern "C" {
     #[wasm_bindgen(js_name = Prism)]
     type Prism;
 
-    #[wasm_bindgen(js_namespace = ["Prism", "languages"], js_name = css)]
+    #[wasm_bindgen(thread_local_v2, js_namespace = ["Prism", "languages"], js_name = css)]
     static CSS: JsValue;
 
     #[wasm_bindgen(js_namespace = Prism)]

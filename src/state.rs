@@ -77,7 +77,7 @@ impl ApplicationState {
             .generated_css_element
             .set_inner_html(&Prism::highlight(
                 &normalize(&generated_css, JsValue::null()),
-                &CSS.clone(),
+            &CSS.with(JsValue::clone),
                 None,
             ));
     }

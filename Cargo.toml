@@ -2,7 +2,7 @@
 name = "css-typing-gen"
 description = "CSS Typing animation generator"
 version = "0.2.5"
-edition = "2021"
+edition = "2024"
 repository = "https://github.com/BatteredBunny/css-typing-gen"
 
 [lib]
