@@ -12,14 +12,14 @@ crate-type = ["cdylib"]
 lto = true
 
 [dependencies]
-wasm-bindgen = { version = "0.2.100" }
+wasm-bindgen = { version = "0.2.104" }
 gloo = "0.11.0"
 chrono = "0.4.42"
 console_error_panic_hook = "0.1.7"
-js-sys = "0.3.77"
+js-sys = "0.3.81"
 
 [dependencies.web-sys]
-version = "0.3.77"
+version = "0.3.81"
 features = [
   'Document',
   'Element',
