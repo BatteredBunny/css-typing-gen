@@ -59,7 +59,7 @@
               pkg-config
               gnumake
               wasm-rust
-              yarn
+              pnpm_10
               wasm-bindgen-cli
             ];
           };

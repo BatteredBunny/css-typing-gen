@@ -1,5 +1,3 @@
-@use "common-web-styles/common";
-@use "prismjs/themes/prism-dark.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 #repo-link {

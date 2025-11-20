@@ -1,13 +1,13 @@
 build:
 	cargo build --target wasm32-unknown-unknown --release
 	wasm-bindgen target/wasm32-unknown-unknown/release/css_typing_gen.wasm --out-dir=pkg
-	cd www && yarn install && yarn build
+	cd www && pnpm install && pnpm build
 
 start: build
-	cd www && yarn preview
+	cd www && pnpm preview
 
 dev: build
-	cd www && yarn start
+	cd www && pnpm start
 
 clean:
 	cargo clean

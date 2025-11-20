@@ -1,7 +1,5 @@
 { pkgs
 , makeRustPlatform
-, mkYarnPackage
-, fetchYarnDeps
 }:
 let
   targetName = "wasm32-unknown-unknown";
@@ -40,26 +38,30 @@ let
     installPhase = "echo 'Skipping installPhase'";
   };
 in
-mkYarnPackage rec {
+pkgs.stdenv.mkDerivation (finalAttrs: {
+  pname = "css-typing-gen";
+  version = "0.2.5";
+
   src = ./www;
 
-  offlineCache = fetchYarnDeps {
-    yarnLock = src + "/yarn.lock";
-    hash = "sha256-OysFthXXhfb3rXJyTa644y+QWpuBBWSXJXnZAdnrjXY=";
-  };
+  nativeBuildInputs = with pkgs; [
+    nodejs
+    pnpm_10.configHook
+  ];
 
   buildPhase = ''
+    runHook preBuild
+
     ln -s ${wasm-build}/pkg ../pkg
-    export HOME=$(mktemp -d)
-    yarn --offline build
+    pnpm build
     cp -r dist $out
+
+    runHook postBuild
   '';
 
-  doDist = false;
-
-  configurePhase = ''
-    ln -s $node_modules node_modules
-  '';
-
-  installPhase = "echo 'Skipping installPhase'";
-}
+  pnpmDeps = pkgs.pnpm_10.fetchDeps {
+    inherit (finalAttrs) pname version src;
+    fetcherVersion = 2;
+    hash = "sha256-wYA2lTxsaSh8Zmp6FV+4l9bMaj4jA9rVvNmaJT3Eg2E=";
+  };
+})
