@@ -16,17 +16,17 @@ importers:
         specifier: github:BatteredBunny/common-web-styles
         version: https://codeload.github.com/BatteredBunny/common-web-styles/tar.gz/13fa510a0496c3f2f9ea207f722e1d5adaec2761
       vite:
-        specifier: 7.2.2
-        version: 7.2.2(terser@5.44.1)
+        specifier: 7.2.4
+        version: 7.2.4(terser@5.44.1)
       vite-plugin-pwa:
         specifier: 1.1.0
-        version: 1.1.0(vite@7.2.2(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0)
+        version: 1.1.0(vite@7.2.4(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0)
       vite-plugin-top-level-await:
         specifier: 1.6.0
-        version: 1.6.0(rollup@2.79.2)(vite@7.2.2(terser@5.44.1))
+        version: 1.6.0(rollup@2.79.2)(vite@7.2.4(terser@5.44.1))
       vite-plugin-wasm:
         specifier: 3.5.0
-        version: 3.5.0(vite@7.2.2(terser@5.44.1))
+        version: 3.5.0(vite@7.2.4(terser@5.44.1))
 
 packages:
 
@@ -1151,8 +1151,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.258:
-    resolution: {integrity: sha512-rHUggNV5jKQ0sSdWwlaRDkFc3/rRJIVnOSe9yR4zrR07m3ZxhP4N27Hlg8VeJGGYgFTxK5NqDmWI4DSH72vIJg==}
+  electron-to-chromium@1.5.259:
+    resolution: {integrity: sha512-I+oLXgpEJzD6Cwuwt1gYjxsDmu/S/Kd41mmLA3O+/uH2pFRO/DvOjUyGozL8j3KeLV6WyZ7ssPwELMsXCcsJAQ==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1868,8 +1868,8 @@ packages:
     peerDependencies:
       vite: ^2 || ^3 || ^4 || ^5 || ^6 || ^7
 
-  vite@7.2.2:
-    resolution: {integrity: sha512-BxAKBWmIbrDgrokdGZH1IgkIk/5mMHDreLDmCJ0qpyJaAteP8NvMhkwr/ZCQNqNH97bw/dANTE9PDzqwJghfMQ==}
+  vite@7.2.4:
+    resolution: {integrity: sha512-NL8jTlbo0Tn4dUEXEsUg8KeyG/Lkmc4Fnzb8JXN/Ykm9G4HNImjtABMJgkQoVjOBN/j2WAwDTRytdqJbZsah7w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -3042,7 +3042,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.30
       caniuse-lite: 1.0.30001756
-      electron-to-chromium: 1.5.258
+      electron-to-chromium: 1.5.259
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -3141,7 +3141,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.258: {}
+  electron-to-chromium@1.5.259: {}
 
   emoji-regex@8.0.0: {}
 
@@ -3969,33 +3969,33 @@ snapshots:
 
   uuid@10.0.0: {}
 
-  vite-plugin-pwa@1.1.0(vite@7.2.2(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0):
+  vite-plugin-pwa@1.1.0(vite@7.2.4(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0):
     dependencies:
       debug: 4.4.3
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.15
-      vite: 7.2.2(terser@5.44.1)
+      vite: 7.2.4(terser@5.44.1)
       workbox-build: 7.4.0
       workbox-window: 7.4.0
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-top-level-await@1.6.0(rollup@2.79.2)(vite@7.2.2(terser@5.44.1)):
+  vite-plugin-top-level-await@1.6.0(rollup@2.79.2)(vite@7.2.4(terser@5.44.1)):
     dependencies:
       '@rollup/plugin-virtual': 3.0.2(rollup@2.79.2)
       '@swc/core': 1.15.2
       '@swc/wasm': 1.15.2
       uuid: 10.0.0
-      vite: 7.2.2(terser@5.44.1)
+      vite: 7.2.4(terser@5.44.1)
     transitivePeerDependencies:
       - '@swc/helpers'
       - rollup
 
-  vite-plugin-wasm@3.5.0(vite@7.2.2(terser@5.44.1)):
+  vite-plugin-wasm@3.5.0(vite@7.2.4(terser@5.44.1)):
     dependencies:
-      vite: 7.2.2(terser@5.44.1)
+      vite: 7.2.4(terser@5.44.1)
 
-  vite@7.2.2(terser@5.44.1):
+  vite@7.2.4(terser@5.44.1):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.3)
