@@ -19,8 +19,8 @@ importers:
         specifier: 7.2.6
         version: 7.2.6(terser@5.44.1)
       vite-plugin-pwa:
-        specifier: 1.1.0
-        version: 1.1.0(vite@7.2.6(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0)
+        specifier: 1.2.0
+        version: 1.2.0(vite@7.2.6(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0)
       vite-plugin-top-level-await:
         specifier: 1.6.0
         version: 1.6.0(rollup@2.79.2)(vite@7.2.6(terser@5.44.1))
@@ -1151,8 +1151,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.262:
-    resolution: {integrity: sha512-NlAsMteRHek05jRUxUR0a5jpjYq9ykk6+kO0yRaMi5moe7u0fVIOeQ3Y30A8dIiWFBNUoQGi1ljb1i5VtS9WQQ==}
+  electron-to-chromium@1.5.263:
+    resolution: {integrity: sha512-DrqJ11Knd+lo+dv+lltvfMDLU27g14LMdH2b0O3Pio4uk0x+z7OR+JrmyacTPN2M8w3BrZ7/RTwG3R9B7irPlg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1846,14 +1846,14 @@ packages:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
 
-  vite-plugin-pwa@1.1.0:
-    resolution: {integrity: sha512-VsSpdubPzXhHWVINcSx6uHRMpOHVHQcHsef1QgkOlEoaIDAlssFEW88LBq1a59BuokAhsh2kUDJbaX1bZv4Bjw==}
+  vite-plugin-pwa@1.2.0:
+    resolution: {integrity: sha512-a2xld+SJshT9Lgcv8Ji4+srFJL4k/1bVbd1x06JIkvecpQkwkvCncD1+gSzcdm3s+owWLpMJerG3aN5jupJEVw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@vite-pwa/assets-generator': ^1.0.0
       vite: ^3.1.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
-      workbox-build: ^7.3.0
-      workbox-window: ^7.3.0
+      workbox-build: ^7.4.0
+      workbox-window: ^7.4.0
     peerDependenciesMeta:
       '@vite-pwa/assets-generator':
         optional: true
@@ -3042,7 +3042,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.32
       caniuse-lite: 1.0.30001757
-      electron-to-chromium: 1.5.262
+      electron-to-chromium: 1.5.263
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -3141,7 +3141,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.262: {}
+  electron-to-chromium@1.5.263: {}
 
   emoji-regex@8.0.0: {}
 
@@ -3969,7 +3969,7 @@ snapshots:
 
   uuid@10.0.0: {}
 
-  vite-plugin-pwa@1.1.0(vite@7.2.6(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0):
+  vite-plugin-pwa@1.2.0(vite@7.2.6(terser@5.44.1))(workbox-build@7.4.0)(workbox-window@7.4.0):
     dependencies:
       debug: 4.4.3
       pretty-bytes: 6.1.1
