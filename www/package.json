@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "common-web-styles": "github:BatteredBunny/common-web-styles",
-    "vite": "7.2.6",
+    "vite": "7.3.0",
     "vite-plugin-pwa": "1.2.0",
     "vite-plugin-top-level-await": "1.6.0",
     "vite-plugin-wasm": "3.5.0"
