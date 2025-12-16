@@ -60,7 +60,7 @@
               gnumake
               wasm-rust
               pnpm_10
-              wasm-bindgen-cli
+              wasm-bindgen-cli_0_2_104
             ];
           };
         });
