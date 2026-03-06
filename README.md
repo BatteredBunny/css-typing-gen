@@ -6,16 +6,16 @@ https://github.com/BatteredBunny/css-typing-gen/assets/52951851/0b76b304-264a-4c
 # Dev instructions
 
 ## Required dependencies
-Rust, wasm-bindgen, nodejs, yarn, gnumake
+Rust, wasm-bindgen, nodejs, yarn, justfile
 
 ## Preview the website
 ```
-make start
+just start
 ```
 
 ## Building the website
 ```
-make build
+just build
 ```
 
 Built files will be in www/dist
@@ -24,7 +24,7 @@ Built files will be in www/dist
 ## Preview the website
 ```
 nix develop
-make start
+just start
 ```
 
 ## Building the website
