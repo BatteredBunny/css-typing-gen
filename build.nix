@@ -23,7 +23,6 @@ let
 
     buildInputs = with pkgs; [
       openssl
-      gnumake
     ];
 
     doCheck = false;
@@ -65,7 +64,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   pnpmDeps = pkgs.fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
-    fetcherVersion = 2;
-    hash = "sha256-LCBSyxg5ov6S+UL9rd7TFgTKeRRW5x0i9XKPVfXgWgM=";
+    fetcherVersion = 3;
+    hash = "sha256-WL0BZErDukfi5FiTUlw97RG1dqfoDdLQ1R4KXpR2BeM=";
   };
 })
