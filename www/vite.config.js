@@ -4,6 +4,9 @@ import topLevelAwait from "vite-plugin-top-level-await";
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+    build: {
+        target: "es2022",
+    },
     plugins: [
         topLevelAwait(),
         wasm(),

@@ -2,11 +2,20 @@
   pkgs,
   stdenv,
   rustPlatform,
+  pnpm_11,
+  fetchPnpmDeps,
+  pnpmConfigHook,
+  nodejs,
+  llvmPackages,
+  pkg-config,
+  wasm-bindgen-cli_0_2_121,
+  openssl,
 }:
 let
   targetName = "wasm32-unknown-unknown";
   pname = "css-typing-gen";
   version = "0.2.5";
+  pnpm = pnpm_11;
 
   wasm-build = rustPlatform.buildRustPackage {
     inherit pname version;
@@ -15,13 +24,13 @@ let
 
     src = ./.;
 
-    nativeBuildInputs = with pkgs; [
-      wasm-bindgen-cli_0_2_106
+    nativeBuildInputs = [
+      wasm-bindgen-cli_0_2_121
       pkg-config
       llvmPackages.lld
     ];
 
-    buildInputs = with pkgs; [
+    buildInputs = [
       openssl
     ];
 
@@ -46,10 +55,10 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = ./www;
 
-  nativeBuildInputs = with pkgs; [
+  nativeBuildInputs = [
     nodejs
     pnpmConfigHook
-    pnpm_10
+    pnpm
   ];
 
   buildPhase = ''
@@ -62,9 +71,11 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postBuild
   '';
 
-  pnpmDeps = pkgs.fetchPnpmDeps {
-    inherit (finalAttrs) pname version src;
+  pnpmDeps = fetchPnpmDeps {
+    pname = "css-typing-gen-frontend";
+    inherit (finalAttrs) version src;
+    inherit pnpm;
     fetcherVersion = 3;
-    hash = "sha256-en+Gd9ZFhlp+jQgBzRPmQ3DdUVfRhpuB6CTfjj8hA3I=";
+    hash = "sha256-cacJB2D9saEkXkTck39uiqP2jmIrb+EZIjl0pfRQcf0=";
   };
 })
