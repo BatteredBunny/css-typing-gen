@@ -8,7 +8,7 @@
   nodejs,
   llvmPackages,
   pkg-config,
-  wasm-bindgen-cli_0_2_121,
+  wasm-bindgen-cli_0_2_126,
   openssl,
 }:
 let
@@ -25,7 +25,7 @@ let
     src = ./.;
 
     nativeBuildInputs = [
-      wasm-bindgen-cli_0_2_121
+      wasm-bindgen-cli_0_2_126
       pkg-config
       llvmPackages.lld
     ];
@@ -75,7 +75,7 @@ stdenv.mkDerivation (finalAttrs: {
     pname = "css-typing-gen-frontend";
     inherit (finalAttrs) version src;
     inherit pnpm;
-    fetcherVersion = 3;
-    hash = "sha256-LzkVgJ95lX6aYUBKlSslhD7ArhTlJEF/AX3pr/9RdDI=";
+    fetcherVersion = 4;
+    hash = "sha256-STtqaDSbBHpyWouf6lTxx5XbOEWjObCX6dHbIKXFNtg=";
   };
 })
