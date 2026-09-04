@@ -1,5 +1,4 @@
 {
-  pkgs,
   stdenv,
   rustPlatform,
   pnpm_11,
@@ -76,6 +75,7 @@ stdenv.mkDerivation (finalAttrs: {
     inherit (finalAttrs) version src;
     inherit pnpm;
     fetcherVersion = 4;
-    hash = "sha256-vkNey8xfbVHD7FCO5n6sWW4IE7QS357/DHBUHEjpNmk=";
+    pnpmInstallFlags = [ "--trust-lockfile" ];
+    hash = "sha256-GZzOap7Fsbu4+v3PO8rRcQvNWW8kAw2FCPPQfV0Yy98=";
   };
 })

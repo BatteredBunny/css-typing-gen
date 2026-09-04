@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import wasm from "vite-plugin-wasm";
-import topLevelAwait from "vite-plugin-top-level-await";
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
@@ -8,7 +7,6 @@ export default defineConfig({
         target: "es2022",
     },
     plugins: [
-        topLevelAwait(),
         wasm(),
         VitePWA({ 
             registerType: 'autoUpdate',
