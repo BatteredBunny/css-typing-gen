@@ -80,6 +80,6 @@ stdenv.mkDerivation (finalAttrs: {
       if stdenv.hostPlatform.isDarwin then
         "sha256-GZzOap7Fsbu4+v3PO8rRcQvNWW8kAw2FCPPQfV0Yy98="
       else
-        "sha256-KojdR7OLtyA/FaOYhcWlMPmmDRUkJchtuf/12jdZn9s=";
+        "sha256-KdrthNKTRoIwmmlf4lhiF/A+Tn9iZdFPpm7JyRm6tSA=";
   };
 })
